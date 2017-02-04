@@ -21,27 +21,27 @@
 
     <ion-list>
       <ion-item-divider color="light">Patient Information</ion-item-divider>
-        <button ion-item>
+        <button ion-item (click)="reasonForVisit()">
           <ion-icon name="ios-clipboard" item-left></ion-icon>
           Reason for Visit
         </button>
 
-        <button ion-item>
+        <button ion-item (click)="medicalHistory()">
           <ion-icon name="ios-book" item-left></ion-icon>
           Medical History
         </button>
 
-      <button ion-item>
+      <button ion-item (click)="diet()">
         <ion-icon name="ios-pizza" item-left></ion-icon>
         Diet
       </button>
 
-        <button ion-item>
+        <button ion-item (click)="medicationGiven()">
           <ion-icon name="ios-medkit" item-left></ion-icon>
           Medications Given
         </button>
 
-        <button ion-item>
+        <button ion-item (click)="testPerformed()">
           <ion-icon name="ios-cog" item-left></ion-icon>
           Tests Performed
         </button>

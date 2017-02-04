@@ -1,26 +1,43 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ActionSheetController } from 'ionic-angular';
-/*
-  Generated class for the PatientProfile page.
+import {ReasonForVisitPage} from "../reason-for-visit/reason-for-visit";
+import {MedicationGivenPage} from "../medication-given/medication-given";
+import {DietPage} from "../diet/diet";
+import {MedicalHistoryPage} from "../medical-history/medical-history";
+import {TestPerformedPage} from "../test-performed/test-performed";
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-patient-profile',
   templateUrl: 'patient-profile.html'
 })
 export class PatientProfilePage {
 
+  reasonForVisit(){
+    this.navCtrl.push(ReasonForVisitPage);
+  }
+  medicalHistory(){
+    this.navCtrl.push(MedicalHistoryPage);
+  }
+  diet(){
+    this.navCtrl.push(DietPage);
+  }
+
+  medicationGiven(){
+    this.navCtrl.push(MedicationGivenPage)
+  }
+
+  testPerformed(){
+    this.navCtrl.push(TestPerformedPage)
+  }
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-     public platform: Platform,
-  public actionsheetCtrl: ActionSheetController) {}
+              public platform: Platform,
+              public actionsheetCtrl: ActionSheetController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PatientProfilePage');
   }
+
   openMenu() {
       let actionSheet = this.actionsheetCtrl.create({
         title: 'Add to Profile',
