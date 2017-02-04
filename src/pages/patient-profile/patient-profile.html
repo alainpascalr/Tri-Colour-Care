@@ -1,0 +1,69 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="http://kingofwallpapers.com/jennifer-aniston/jennifer-aniston-007.jpg">
+      </ion-avatar>
+      <h2>Marty McFly</h2>
+      <p>Age: 23 years old</p>
+      <p>Weight: 175 pounds</p>
+      <ion-badge item-right color="danger">Critical</ion-badge>
+
+    </ion-item>
+  </ion-card>
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="openMenu()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <ion-card>
+
+    <ion-list>
+      <ion-item-divider color="light">Patient Information</ion-item-divider>
+        <button ion-item>
+          <ion-icon name="ios-clipboard" icon-left></ion-icon>
+          Reason for Visit
+        </button>
+
+        <button ion-item>
+          <ion-icon name="ios-body" icon-left></ion-icon>
+          Medical History
+        </button>
+
+        <button ion-item>
+          <ion-icon name="ios-build" icon-left></ion-icon>
+          Medications Given
+        </button>
+
+        <button ion-item>
+          <ion-icon name="ios-cog" icon-left></ion-icon>
+          Tests Run
+        </button>
+
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-item-divider color="light">Seen by:</ion-item-divider>
+
+    <button ion-item>
+    <ion-icon name="ios-contacts" icon-left></ion-icon>
+      Cardiologist
+    </button>
+    <button ion-item>
+
+    <ion-icon name="ios-contacts" icon-left></ion-icon>
+      Nurse
+    </button>
+    <button ion-item>
+
+    <ion-icon name="ios-contacts" icon-left></ion-icon>
+      X-Ray Operator
+    </button>
+
+
+  </ion-card>
+
+
+</ion-content>
