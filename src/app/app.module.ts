@@ -5,6 +5,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import {SigninPage} from "../pages/account/signin/signin";
 import {SignupPage} from "../pages/account/signup/signup";
+import {SearchPage} from "../pages/search/search";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import {SignupPage} from "../pages/account/signup/signup";
     HomePage,
     TabsPage,
     SigninPage,
-    SignupPage
+    SignupPage,
+    SearchPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
