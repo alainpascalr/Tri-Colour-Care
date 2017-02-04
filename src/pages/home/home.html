@@ -7,32 +7,28 @@
 <ion-content>
   <ion-card>
 
-    <ion-item>
+    <ion-item *ngFor="let user of user">
       <ion-avatar item-left>
-        <img src="http://kingofwallpapers.com/jennifer-aniston/jennifer-aniston-007.jpg">
+        <img src="{{user.profile_pic}}">
       </ion-avatar>
-      <h2>Marty McFly</h2> <ion-badge item-right color="danger">Critical</ion-badge>
-      <p>Age: 23 years old</p>
+      <h2>{{user.full_name}}</h2> <ion-badge item-right color="danger">{{user.condition}}</ion-badge>
+      <p>Age: {{user.age}} years old</p>
     </ion-item>
 
     <ion-list>
       <ion-item-group>
         <ion-item-divider color="light">Seen by</ion-item-divider>
-        <ion-item>Dr. Todd</ion-item>
+        <ion-item *ngFor="let doctor of doctor">{{doctor.name}}</ion-item>
       </ion-item-group>
 
       <ion-item-group>
         <ion-item-divider color="light">Medications given</ion-item-divider>
-        <ion-item>Advil</ion-item>
-        <ion-item>Advil</ion-item>
-        <ion-item>Advil</ion-item>
+        <ion-item *ngFor="let medication of medication">{{medication.name}}</ion-item>
       </ion-item-group>
 
       <ion-item-group>
         <ion-item-divider color="light">Symptoms</ion-item-divider>
-        <ion-item>Headache</ion-item>
-        <ion-item>Chest pain</ion-item>
-        <ion-item>Dizziness</ion-item>
+        <ion-item *ngFor="let symptom of symptom">{{symptom.name}}</ion-item>
       </ion-item-group>
     </ion-list>
 
