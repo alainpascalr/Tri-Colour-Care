@@ -14,6 +14,7 @@ import {MedicalHistoryPage} from "../pages/medical-history/medical-history";
 import {MedicationGivenPage} from "../pages/medication-given/medication-given";
 import {ReasonForVisitPage} from "../pages/reason-for-visit/reason-for-visit";
 import {TestPerformedPage} from "../pages/test-performed/test-performed";
+import {NutritionGuidePage} from "../pages/nutrition-guide/nutrition-guide";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {TestPerformedPage} from "../pages/test-performed/test-performed";
     MedicalHistoryPage,
     MedicationGivenPage,
     ReasonForVisitPage,
-    TestPerformedPage
+    TestPerformedPage,
+    NutritionGuidePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -49,7 +51,8 @@ import {TestPerformedPage} from "../pages/test-performed/test-performed";
     MedicalHistoryPage,
     MedicationGivenPage,
     ReasonForVisitPage,
-    TestPerformedPage
+    TestPerformedPage,
+    NutritionGuidePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

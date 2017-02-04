@@ -6,6 +6,7 @@ import {MedicationGivenPage} from "../medication-given/medication-given";
 import {DietPage} from "../diet/diet";
 import {MedicalHistoryPage} from "../medical-history/medical-history";
 import {TestPerformedPage} from "../test-performed/test-performed";
+import {NutritionGuidePage} from "../nutrition-guide/nutrition-guide";
 
 
 @Component({
@@ -20,8 +21,12 @@ export class PatientProfilePage {
   medicalHistory(){
     this.navCtrl.push(MedicalHistoryPage);
   }
-  diet(){
+  dietRestriction(){
     this.navCtrl.push(DietPage);
+  }
+
+  nutritionGuide(){
+    this.navCtrl.push(NutritionGuidePage);
   }
 
   medicationGiven(){
