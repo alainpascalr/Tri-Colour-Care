@@ -60,6 +60,8 @@ class DoctorPatientList(mixins.ListModelMixin,
                generics.GenericAPIView):
     queryset = DoctorPatient.objects.all()
     serializer_class = DoctorPatientSerializer
+    # filter_backends = filters.SearchFilter
+    filter_fields = ('doctor', 'patient')
     # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
@@ -78,6 +80,7 @@ class DoctorPatientDetail(mixins.RetrieveModelMixin,
                    generics.GenericAPIView):
     queryset = DoctorPatient.objects.all()
     serializer_class = DoctorPatientSerializer
+
     # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
@@ -95,8 +98,6 @@ class PatientList(mixins.ListModelMixin,
                   generics.GenericAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
-    filter_backends = filters.SearchFilter
-    search_fields = ('healthcard')
     # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
