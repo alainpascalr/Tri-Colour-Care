@@ -54,10 +54,26 @@ referDoctor(){
 
 addMedicine(){
   let alert = this.alertCtrl.create({
-  title: 'Add Medicine',
+  title: 'Add Medication',
     inputs: [
       {name: 'Medication', placeholder: 'Add medication'},
       {name: 'Dosage', placeholder: 'Enter the dosage'}
+    ],
+    buttons: [{text: 'Cancel',role: 'cancel',
+    handler: data => {
+      console.log('Cancel clicked');}
+    },
+
+    {text: 'Save', handler: data => {}}]});
+    alert.present();
+}
+
+addDietRestriction(){
+  let alert = this.alertCtrl.create({
+  title: 'Add Diet Restriction',
+    inputs: [
+      {name: 'Food', placeholder: 'Add food type or name'},
+      {name: 'Description', placeholder: 'Enter a description'}
     ],
     buttons: [{text: 'Cancel',role: 'cancel',
     handler: data => {
@@ -102,6 +118,14 @@ addMedicine(){
             handler: () => {
               console.log('Add Medication clicked');
               this.addMedicine();
+            }
+          },
+          {
+            text: 'Add New Diet Restriction',
+            icon: !this.platform.is('ios') ? 'ios-pizza' : null,
+            handler: () => {
+              console.log('New Diet Restriction clicked');
+              this.addDietRestriction();
             }
           },
           {
