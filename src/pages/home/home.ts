@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
+import {PatientProfilePage} from "../patient-profile/patient-profile";
 
 @Component({
   selector: 'page-home',
@@ -11,6 +12,11 @@ export class HomePage {
   medication = [];
   symptom = [];
   user = [];
+
+  //Show patient details
+  viewDetails(){
+    this.navCtrl.push(PatientProfilePage)
+  }
   constructor(public navCtrl: NavController) {
     //doctor segment
     this.doctor = [

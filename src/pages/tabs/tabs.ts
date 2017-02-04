@@ -14,7 +14,6 @@ export class TabsPage {
   homeRoot: any = HomePage;
   profileRoot: any = ProfilePage;
   notificationRoot: any = NotificationPage;
-  profilePatient: any = PatientProfilePage;
   constructor() {
 
   }

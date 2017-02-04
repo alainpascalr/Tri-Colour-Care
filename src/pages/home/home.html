@@ -1,11 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <page-search></page-search>
+    <ion-title>
+      Lyff
+    </ion-title>
   </ion-navbar>
+  <page-search></page-search>
 </ion-header>
 
+
 <ion-content>
-  <ion-card>
+  <ion-card (click)="viewDetails()">
 
     <ion-item *ngFor="let user of user">
       <ion-avatar item-left>
