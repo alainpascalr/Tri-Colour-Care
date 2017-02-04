@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Platform, ActionSheetController } from 'ionic-angular';
+import { Platform, ActionSheetController,AlertController } from 'ionic-angular';
 /*
   Generated class for the PatientProfile page.
 
@@ -16,11 +16,58 @@ export class PatientProfilePage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
      public platform: Platform,
-  public actionsheetCtrl: ActionSheetController) {}
+  public actionsheetCtrl: ActionSheetController,
+  private alertCtrl: AlertController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PatientProfilePage');
   }
+
+addComment(){
+  let alert = this.alertCtrl.create({
+  title: 'Add Comment',
+    inputs: [
+      {name: 'Comment', placeholder: 'Add a comment'},
+    ],
+    buttons: [{text: 'Cancel',role: 'cancel',
+    handler: data => {
+      console.log('Cancel clicked');}
+    },
+    {text: 'Save', handler: data => {}}]});
+    alert.present();
+}
+
+referDoctor(){
+  let alert = this.alertCtrl.create({
+  title: 'Refer Doctor',
+    inputs: [
+      {name: 'Doctor', placeholder: 'Refer a doctor to the patient'},
+    ],
+    buttons: [{text: 'Cancel',role: 'cancel',
+    handler: data => {
+      console.log('Cancel clicked');}
+    },
+    {text: 'Save', handler: data => {}}]});
+    alert.present();
+}
+
+
+addMedicine(){
+  let alert = this.alertCtrl.create({
+  title: 'Add Medicine',
+    inputs: [
+      {name: 'Medication', placeholder: 'Add medication'},
+      {name: 'Dosage', placeholder: 'Enter the dosage'}
+    ],
+    buttons: [{text: 'Cancel',role: 'cancel',
+    handler: data => {
+      console.log('Cancel clicked');}
+    },
+
+    {text: 'Save', handler: data => {}}]});
+    alert.present();
+}
+
   openMenu() {
       let actionSheet = this.actionsheetCtrl.create({
         title: 'Add to Profile',
@@ -46,6 +93,7 @@ export class PatientProfilePage {
             icon: !this.platform.is('ios') ? 'add-circle' : null,
             handler: () => {
               console.log('Add Comment clicked');
+              this.addComment();
             }
           },
           {
@@ -53,6 +101,7 @@ export class PatientProfilePage {
             icon: !this.platform.is('ios') ? 'medkit' : null,
             handler: () => {
               console.log('Add Medication clicked');
+              this.addMedicine();
             }
           },
           {
@@ -60,6 +109,7 @@ export class PatientProfilePage {
             icon: !this.platform.is('ios') ? 'ios-people' : null,
             handler: () => {
               console.log('Refer Doctor clicked');
+              this.referDoctor();
             }
           },
           {
