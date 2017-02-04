@@ -1,4 +1,4 @@
-#!/Users/robcardy/Programming/PycharmProjects/Health/healthenv/bin/python3.5
+#!/Users/robcardy/Programming/PycharmProjects/Lyff/lyff-server/healthenv/bin/python3.5
 from django.core import management
 
 if __name__ == "__main__":

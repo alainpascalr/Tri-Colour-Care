@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/robcardy/Programming/PycharmProjects/Health/healthenv"
+set -gx VIRTUAL_ENV "/Users/robcardy/Programming/PycharmProjects/Lyff/lyff-server/healthenv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
