@@ -49,3 +49,8 @@ class Medication(models.Model):
     patient = models.IntegerField(default=-1)
     medication = models.CharField(default='Tylenol', max_length=255)
     dose = models.CharField(default='1 a day', max_length=255)
+
+
+class Symptom(models.Model):
+    patient = models.IntegerField(default=-1)
+    symptom = models.CharField(default='Sniffles', max_length=140)
