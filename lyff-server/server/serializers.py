@@ -4,7 +4,7 @@ from server.models import Doctor, Patient
 
 
 class DoctorSerializer(serializers.ModelSerializer):
-    patients = serializers.PrimaryKeyRelatedField(many=True)
+    patients = serializers.PrimaryKeyRelatedField(many=True, queryset=User.objects.all())
 
     class Meta:
         model = Doctor
@@ -12,12 +12,11 @@ class DoctorSerializer(serializers.ModelSerializer):
 
 
 class PatientSerializer(serializers.ModelSerializer):
-    doctors = serializers.PrimaryKeyRelatedField(many=True)
 
     class Meta:
         model = Patient
-        fields = ('url', 'id', 'firstname', 'lastname', 'email', 'password', 'phone', 'age',
-                  'weight', 'height', 'healthcard', 'photo', 'doctors')
+        fields = ('url', 'firstname', 'lastname', 'email', 'password', 'phone', 'age',
+                  'weight', 'height', 'healthcard', 'photo',)
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
