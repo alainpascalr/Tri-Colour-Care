@@ -25,7 +25,7 @@ SECRET_KEY = 'kkvby3nib0lb$mmwtsm^ky-n%s#o^+s6+$*i_%gv9z(+toc*+s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -120,10 +120,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = 'http://localhost:8000/media/'
+MEDIA_ROOT = '/Users/robcardy/Programming/PycharmProjects/Lyff/lyff-server/server/images'
 
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.IsAdminUser',
     # ],
     # 'PAGE_SIZE': 10
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter'),
 }

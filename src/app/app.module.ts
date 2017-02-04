@@ -6,6 +6,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import {SigninPage} from "../pages/account/signin/signin";
 import {SignupPage} from "../pages/account/signup/signup";
 import {SearchPage} from "../pages/search/search";
+import {ProfilePage} from "../pages/profile/profile";
+import {NotificationPage} from "../pages/notification/notification";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import {SearchPage} from "../pages/search/search";
     TabsPage,
     SigninPage,
     SignupPage,
-    SearchPage
+    SearchPage,
+    ProfilePage,
+    NotificationPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -25,7 +29,9 @@ import {SearchPage} from "../pages/search/search";
     HomePage,
     TabsPage,
     SigninPage,
-    SignupPage
+    SignupPage,
+    ProfilePage,
+    NotificationPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
