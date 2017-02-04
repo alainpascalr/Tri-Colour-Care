@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Patient(models.Model):
@@ -15,9 +14,6 @@ class Patient(models.Model):
     photo = models.ImageField(upload_to='/Users/robcardy/Programming/PycharmProjects/Lyff/lyff-server/server/images',
                               null=True, max_length=255)
 
-    def __unicode__(self):
-        return self.healthcard
-
 
 class Doctor(models.Model):
     firstname = models.CharField(max_length=25, default="Doctor")
@@ -26,11 +22,9 @@ class Doctor(models.Model):
     specialty = models.CharField(max_length=50, default="Proctology")
     photo = models.ImageField(upload_to='/Users/robcardy/Programming/PycharmProjects/Lyff/lyff-server/server/images',
                               null=True, max_length=255)
-    patients = models.ManyToManyField(Patient)
-
-    def __unicode__(self):
-        return self.id
 
 
-
+class DoctorPatient(models.Model):
+    doctor = models.IntegerField(default=1)
+    patient = models.IntegerField(default=1)
 
