@@ -19,4 +19,8 @@ export class SignupPage {
     console.log('ionViewDidLoad SignupPage');
   }
 
+  public register(){
+    this.navCtrl.pop(SignupPage)
+  }
+
 }
