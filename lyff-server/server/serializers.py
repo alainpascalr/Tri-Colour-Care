@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from server.models import Comment, Doctor, Document, Patient, Medication, DoctorPatient
+from server.models import Comment, Doctor, Document, Patient, Medication, DoctorPatient, Symptom
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -54,3 +54,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'id', 'username', )
+
+
+class SymptomSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Symptom
+        fields = ('url', 'id', 'patient', 'symptom')

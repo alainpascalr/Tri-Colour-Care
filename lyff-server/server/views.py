@@ -6,8 +6,9 @@ from rest_framework.response import Response
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework import permissions
-from server.models import Comment, Doctor, DoctorPatient, Document, Medication, Patient
-from server.serializers import CommentSerializer, DoctorSerializer, DoctorPatientSerializer, DocumentSerializer, MedicationSerializer, PatientSerializer
+from server.models import Comment, Doctor, DoctorPatient, Document, Medication, Patient, Symptom
+from server.serializers import CommentSerializer, DoctorSerializer, DoctorPatientSerializer, \
+    DocumentSerializer, MedicationSerializer, PatientSerializer, SymptomSerializer
 from rest_framework import filters
 
 
@@ -26,6 +27,7 @@ class CommentList(mixins.ListModelMixin,
                   generics.GenericAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    filter_fields = ('doctor', 'patient')
     # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
@@ -96,7 +98,6 @@ class DoctorPatientList(mixins.ListModelMixin,
                         generics.GenericAPIView):
     queryset = DoctorPatient.objects.all()
     serializer_class = DoctorPatientSerializer
-    # filter_backends = filters.SearchFilter
     filter_fields = ('doctor', 'patient')
     # permission_classes = permissions.IsAuthenticated
 
@@ -134,6 +135,7 @@ class DocumentList(mixins.ListModelMixin,
                    generics.GenericAPIView):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+    filter_fields = ('doctor', 'patient')
     # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
@@ -169,7 +171,7 @@ class MedicationList(mixins.ListModelMixin,
                      generics.GenericAPIView):
     queryset = Medication.objects.all()
     serializer_class = MedicationSerializer
-
+    filter_fields = ('doctor', 'patient')
     # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
@@ -236,6 +238,42 @@ class PatientDetail(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 
+class SymptomList(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
+                  generics.GenericAPIView):
+    queryset = Symptom.objects.all()
+    serializer_class = SymptomSerializer
+    # permission_classes = permissions.IsAuthenticated
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class SymptomDetail(mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   mixins.DestroyModelMixin,
+                   generics.GenericAPIView):
+    queryset = Symptom.objects.all()
+    filter_fields = ('patient', 'symptom')
+    serializer_class = SymptomSerializer
+    # permission_classes = permissions.IsAuthenticated
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
@@ -246,4 +284,5 @@ def api_root(request, format=None):
         'medications': reverse('medication-list', request=request, format=format),
         'documents': reverse('document-list', request=request, format=format),
         'comments': reverse('comment-list', request=request, format=format),
+        'symptoms': reverse('symptom-list', request=request, format=format),
     })
