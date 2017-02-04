@@ -1,4 +1,4 @@
-![Lyff](https://openclipart.org/image/2400px/svg_to_png/248459/happy_life.png =400x379)
+![Lyff](http://i.imgur.com/HCUDT9M.png)
 
 ## Lyff
 
