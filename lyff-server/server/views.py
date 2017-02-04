@@ -6,9 +6,9 @@ from rest_framework.response import Response
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework import permissions
-from server.models import Comment, Doctor, DoctorPatient, Document, Medication, Patient, Symptom
+from server.models import Comment, Doctor, DoctorPatient, Document, Medication, Patient, Symptom, Test
 from server.serializers import CommentSerializer, DoctorSerializer, DoctorPatientSerializer, \
-    DocumentSerializer, MedicationSerializer, PatientSerializer, SymptomSerializer
+    DocumentSerializer, MedicationSerializer, PatientSerializer, SymptomSerializer, TestSerializer
 from rest_framework import filters
 
 
@@ -274,6 +274,42 @@ class SymptomDetail(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 
+class TestList(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
+                  generics.GenericAPIView):
+    queryset = Test.objects.all()
+    serializer_class = TestSerializer
+    # permission_classes = permissions.IsAuthenticated
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class TestDetail(mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   mixins.DestroyModelMixin,
+                   generics.GenericAPIView):
+    queryset = Test.objects.all()
+    filter_fields = ('patient', 'test')
+    serializer_class = TestSerializer
+    # permission_classes = permissions.IsAuthenticated
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
@@ -285,4 +321,5 @@ def api_root(request, format=None):
         'documents': reverse('document-list', request=request, format=format),
         'comments': reverse('comment-list', request=request, format=format),
         'symptoms': reverse('symptom-list', request=request, format=format),
+        'test': reverse('test-list', request=request, format=format),
     })

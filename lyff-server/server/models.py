@@ -54,3 +54,8 @@ class Medication(models.Model):
 class Symptom(models.Model):
     patient = models.IntegerField(default=-1)
     symptom = models.CharField(default='Sniffles', max_length=140)
+
+
+class Test(models.Model):
+    patient = models.IntegerField(default=-1)
+    test = models.CharField(default='Urine Test', max_length=140)
