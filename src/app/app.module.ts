@@ -16,6 +16,7 @@ import {ReasonForVisitPage} from "../pages/reason-for-visit/reason-for-visit";
 import {TestPerformedPage} from "../pages/test-performed/test-performed";
 import {NutritionGuidePage} from "../pages/nutrition-guide/nutrition-guide";
 import {ApiService} from "../providers/api-service";
+import {AuthService} from "../pages/account/auth-service";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,6 @@ import {ApiService} from "../providers/api-service";
     TestPerformedPage,
     NutritionGuidePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ApiService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ApiService, AuthService]
 })
 export class AppModule {}
