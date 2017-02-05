@@ -11,7 +11,7 @@
       <ion-avatar item-left>
         <img src="{{pat.photo}}">
       </ion-avatar>
-      <h2>{{pat.firstname+" "+ pat.lastname}}</h2> <ion-badge item-right color="danger">{{pat.status}}</ion-badge>
+      <h2>{{pat.firstname+" "+ pat.lastname}}</h2> <ion-badge *ngIf="pat.id == 1" item-right color="danger">{{pat.status}}</ion-badge>
       <p>Age: {{pat.age}} years old</p>
     </ion-item>
 
