@@ -1,38 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Lyff
-    </ion-title>
+    <page-search></page-search>
   </ion-navbar>
-  <page-search></page-search>
 </ion-header>
 
-
 <ion-content>
-  <ion-card (click)="viewDetails()">
+  <ion-card *ngFor="let pat of patient">
 
-    <ion-item *ngFor="let user of user">
+    <ion-item  (click)="viewDetails()">
       <ion-avatar item-left>
-        <img src="{{user.profile_pic}}">
+        <img src="{{pat.photo}}">
       </ion-avatar>
-      <h2>{{user.full_name}}</h2> <ion-badge item-right color="danger">{{user.condition}}</ion-badge>
-      <p>Age: {{user.age}} years old</p>
+      <h2>{{pat.firstname+" "+ pat.lastname}}</h2> <ion-badge item-right color="danger">{{pat.status}}</ion-badge>
+      <p>Age: {{pat.age}} years old</p>
     </ion-item>
 
     <ion-list>
       <ion-item-group>
-        <ion-item-divider color="light">Seen by</ion-item-divider>
-        <ion-item *ngFor="let doctor of doctor">{{doctor.name}}</ion-item>
+        <ion-item-divider color="light">Last Seen by</ion-item-divider>
+        <ng-container *ngFor="let docs of doctors">
+        <ion-item *ngIf="pat.lastseen==docs.id">{{docs.prefix+" "+ docs.firstname+ " " + docs.lastname}}</ion-item>
+      </ng-container>
       </ion-item-group>
 
       <ion-item-group>
         <ion-item-divider color="light">Medications given</ion-item-divider>
-        <ion-item *ngFor="let medication of medication">{{medication.name}}</ion-item>
+        <ng-container *ngFor="let med of medications">
+        <ion-item *ngIf="pat.id==med.patient">{{med.medication}}</ion-item>
+      </ng-container>
       </ion-item-group>
 
       <ion-item-group>
         <ion-item-divider color="light">Symptoms</ion-item-divider>
-        <ion-item *ngFor="let symptom of symptom">{{symptom.name}}</ion-item>
+        <ng-container *ngFor="let symp of symptoms">
+        <ion-item *ngIf="pat.id==symp.patient">{{symp.symptom}}</ion-item>
+      </ng-container>
       </ion-item-group>
     </ion-list>
 

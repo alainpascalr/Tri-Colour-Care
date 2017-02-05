@@ -1,56 +1,63 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {PatientProfilePage} from "../patient-profile/patient-profile";
+import {ApiService} from "../../providers/api-service";
+
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [ApiService]
 })
 export class HomePage {
-  doctor = [];
-  medication = [];
-  symptom = [];
-  user = [];
 
   //Show patient details
   viewDetails(){
     this.navCtrl.push(PatientProfilePage)
   }
-  constructor(public navCtrl: NavController) {
-    //doctor segment
-    this.doctor = [
-      {
-        'name': 'Dr. Tod',
+
+  constructor(public navCtrl: NavController,  public navParams: NavParams, private api: ApiService) {}
+  patient: any[];
+  symptoms: any[];
+  medications: any[];
+  doctors: any[];
+  getPatients(){
+    return this.api.get('patient/')
+      .then ((datas) => {
+      this.patient = datas;
+      });
+  }
+
+  getSymptoms(){
+    return this.api.get('symptom/')
+      .then ((datas) => {
+      this.symptoms = datas;
+      });
+  }
+
+
+  getMeds(){
+      return this.api.get('medication/')
+        .then ((datas) => {
+        this.medications = datas;
+        });
+    }
+
+    getDocs(){
+        return this.api.get('doctor/')
+          .then ((datas) => {
+          this.doctors = datas;
+          });
       }
-      ];
-    //medication segment
-    this.medication = [
-      {
-      'name': 'Advil',
-      },
-      {
-        'name': 'Tylenol',
-      }
-    ];
-    //symptom segment
-    this.symptom = [
-      {
-      'name': 'Chest pain',
-      },
-      {
-        'name': 'Headache',
-      }
-    ];
-    //user segment
-    this.user = [
-      {
-        'full_name' : 'Jennifer Aniston',
-        'age' : '23',
-        'condition' : 'critical',
-        'profile_pic' : 'http://kingofwallpapers.com/jennifer-aniston/jennifer-aniston-007.jpg'
-      }
-    ]
+
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad TestPerformedPage');
+    this.getPatients();
+    this.getSymptoms();
+    this.getMeds();
+    this.getDocs();
   }
 
 }
