@@ -20,7 +20,7 @@
     </ion-item>
   </ion-card>
   <ion-fab bottom right>
-    <button ion-fab mini (click)="openMenu()"><ion-icon name="add"></ion-icon></button>
+    <button *ngIf="personData.id != 1" ion-fab mini (click)="openMenu()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
   <ion-card>
 
