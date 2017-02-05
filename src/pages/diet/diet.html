@@ -7,18 +7,31 @@
 <ion-content>
 
   <ion-item-group>
-    <ion-item-divider color="light">Meat</ion-item-divider>
-    <ion-item>Fish</ion-item>
-    <ion-item>Hum</ion-item>
+    <ion-item-divider color="light">Meat &amp; Alternatives</ion-item-divider>
+    <ng-container *ngFor="let diet of dietRestriction">  
+    <ion-item *ngIf="diet.category=='Meat'">{{diet.food}}</ion-item>
+  </ng-container>
   </ion-item-group>
 
   <ion-item-group>
-    <ion-item-divider color="light">Fruit</ion-item-divider>
-    <ion-item>Melon</ion-item>
-    <ion-item>Watermelon</ion-item>
-    <ion-item>Apple</ion-item>
+    <ion-item-divider color="light">Fruit &amp; Vegetables</ion-item-divider>
+    <ng-container *ngFor="let diet of dietRestriction">
+    <ion-item *ngIf="diet.category=='Fruit'">{{diet.food}}</ion-item>
+  </ng-container>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-item-divider color="light">Grains</ion-item-divider>
+    <ng-container *ngFor="let diet of dietRestriction">
+    <ion-item *ngIf="diet.category=='Grains'">{{diet.food}}</ion-item>
+  </ng-container>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-item-divider color="light">Dairy</ion-item-divider>
+    <ng-container *ngFor="let diet of dietRestriction">
+    <ion-item *ngIf="diet.category=='Dairy'">{{diet.food}}</ion-item>
+  </ng-container>
   </ion-item-group>
 
 </ion-content>
-
-

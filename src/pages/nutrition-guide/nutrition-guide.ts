@@ -1,22 +1,27 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {ApiService} from "../../providers/api-service";
 
-/*
-  Generated class for the NutritionGuide page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-nutrition-guide',
   templateUrl: 'nutrition-guide.html'
 })
 export class NutritionGuidePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  private api: ApiService) {}
+  dietGuide: any[];
+
+  getDietGuide(){
+    return this.api.get('dietsuggestion/')
+      .then ((datas) => {
+      this.dietGuide = datas;
+      });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NutritionGuidePage');
+    this.getDietGuide();
   }
 
 }

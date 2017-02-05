@@ -14,9 +14,10 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ReasonForVisitPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  personData=this.navParams.get('personData');
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReasonForVisitPage');
   }
-
+ 
 }

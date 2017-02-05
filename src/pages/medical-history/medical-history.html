@@ -7,16 +7,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="item-text-wrap">
+  <ion-card class="item-text-wrap" *ngFor="let docs of documents">
 
-    <ion-item text-wrap>
-      <h2><strong>Practitioner Name:</strong> John Smith</h2>
-      <h2><strong>Role: </strong> Cardiologist</h2>
-      <p><strong>Date Added:</strong> 04-02-2017</p>
-      <p><strong>Description:</strong> Blah Blah Blah I am dying help
-        pls somebody I don't know whre I am</p>
+    <ng-container *ngFor="let doctor of doctors">
+    <ion-item text-wrap *ngIf="docs.doctor==doctor.id">
+      <h2><strong>Practitioner Name:</strong>{{doctor.prefix+ " "+
+        doctor.firstname + " " + doctor.lastname}}</h2>
+      <h2><strong>Role: </strong> {{doctor.specialty}}</h2>
+      <p><strong>Date Added:</strong>{{docs.date}}</p>
+      <p><strong>Description:</strong>{{docs.description}}</p>
     </ion-item>
-
+    </ng-container>
 
   </ion-card>
 
