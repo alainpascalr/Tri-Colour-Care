@@ -2,6 +2,8 @@
 
 ## Tri Colour Care
 
+## QHacks 2017
+
 # Inspiration
 After talking with friends in medicine, we decided that the entire patient care team needed a better way to keep in touch. Patients need to be engaged in their care in order to aid their recovery. By making it easy for patients and the care team to communicate, we hope to increase patient engagement, and improve health outcomes in the process.
 
