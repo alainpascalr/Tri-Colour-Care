@@ -16,10 +16,12 @@ import {ApiService} from "../../providers/api-service";
 export class TestPerformedPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private api: ApiService) {}
-
+  data: any[];
   test(){
     return this.api.get('testsgiven/')
-      .then ((data) => console.log(data));
+      .then ((data) => {
+      this.data = data;
+      });
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestPerformedPage');
