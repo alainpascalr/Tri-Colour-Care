@@ -10,12 +10,12 @@
   <ion-card>
     <ion-item>
       <ion-avatar item-left>
-        <img src="http://kingofwallpapers.com/jennifer-aniston/jennifer-aniston-007.jpg">
+        <img src={{personData.photo}}>
       </ion-avatar>
-      <h2>Marty McFly</h2>
-      <p>Age: 23 years old</p>
-      <p>Weight: 175 pounds</p>
-      <ion-badge item-right color="danger">Critical</ion-badge>
+      <h2>{{personData.firstname + " " +personData.lastname}}</h2>
+      <p>Age: {{personData.age}}</p>
+      <p>Weight: {{personData.weight + "lbs"}}</p>
+      <ion-badge item-right color="danger">{{personData.status}}</ion-badge>
 
     </ion-item>
   </ion-card>
@@ -60,22 +60,13 @@
   </ion-card>
 
   <ion-card>
-    <ion-item-divider color="light">Seen by:</ion-item-divider>
+    <ion-item-divider color="light">Healthcare Team:</ion-item-divider>
 
-    <button ion-item>
+    <ng-container *ngFor="let docs of doctors">
+    <button ion-item *ngIf="docs.patient==personData.id">
     <ion-icon name="ios-contact" item-left></ion-icon>
-      Cardiologist
+      {{docs.doctor}}
     </button>
-
-    <button ion-item>
-    <ion-icon name="ios-contact" item-left></ion-icon>
-      Nurse
-    </button>
-
-    <button ion-item>
-    <ion-icon name="ios-contact" item-left></ion-icon>
-      X-Ray Operator
-    </button>
-
+  </ng-container>
   </ion-card>
 </ion-content>

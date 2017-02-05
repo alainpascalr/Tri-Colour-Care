@@ -7,7 +7,7 @@
 <ion-content>
   <ion-card *ngFor="let pat of patient">
 
-    <ion-item  (click)="viewDetails()">
+    <ion-item  (click)="viewDetails(pat)">
       <ion-avatar item-left>
         <img src="{{pat.photo}}">
       </ion-avatar>
@@ -24,7 +24,7 @@
       </ion-item-group>
 
       <ion-item-group>
-        <ion-item-divider color="light">Medications given</ion-item-divider>
+        <ion-item-divider color="light">Medications Given</ion-item-divider>
         <ng-container *ngFor="let med of medications">
         <ion-item *ngIf="pat.id==med.patient">{{med.medication}}</ion-item>
       </ng-container>

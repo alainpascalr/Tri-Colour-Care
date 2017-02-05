@@ -13,8 +13,10 @@ import {ApiService} from "../../providers/api-service";
 export class HomePage {
 
   //Show patient details
-  viewDetails(){
-    this.navCtrl.push(PatientProfilePage)
+  viewDetails(personData){
+    this.navCtrl.push(PatientProfilePage,{
+    person:personData
+    });
   }
 
   constructor(public navCtrl: NavController,  public navParams: NavParams, private api: ApiService) {}

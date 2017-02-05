@@ -5,21 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card *ngFor="let tests of data">
     <ion-item-group>
-      <ion-item-divider color="light">List of tests</ion-item-divider>
-      <ion-item>X-ray</ion-item>
-      <ion-item>CAT Scan</ion-item>
+      <ion-item-divider color="light">Test</ion-item-divider>
+      <ion-item>{{tests.testname}}</ion-item>
     </ion-item-group>
     <ion-item-group>
       <ion-item-divider color="light">Reason</ion-item-divider>
-      <ion-item>The patient had headache</ion-item>
-      <ion-item>The patient suffered from dizziness</ion-item>
+      <ion-item>{{tests.reason}}</ion-item>
     </ion-item-group>
     <ion-item-group>
-      <ion-item-divider color="light">Frequency</ion-item-divider>
-      <ion-item>Twice a day</ion-item>
-      <ion-item>Once a day before lunch</ion-item>
+      <ion-item-divider color="light">Doctor</ion-item-divider>
+      <ion-item>{{tests.id}}</ion-item>
     </ion-item-group>
+
   </ion-card>
 </ion-content>

@@ -17,15 +17,24 @@ export class TestPerformedPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private api: ApiService) {}
   data: any[];
-  test(){
-    return this.api.get('testsgiven/')
-      .then ((data) => {
-      this.data = data;
+  doctor;
+  getTest(){
+    return this.api.get('testing/')
+      .then ((datas) => {
+      this.data = datas;
       });
   }
+  getDoctor(id){
+    return this.api.get('doctors/?id='+id)
+      .then ((datas) => {
+
+      return this.doctor = datas[0].prefix+datas[0].firstname+datas[0].lastname;
+      });
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestPerformedPage');
-    this.test();
+    this.getTest();
   }
 
 }

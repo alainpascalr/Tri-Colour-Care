@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import { Platform, ActionSheetController,AlertController } from 'ionic-angular';
 import {ReasonForVisitPage} from "../reason-for-visit/reason-for-visit";
 import {MedicationGivenPage} from "../medication-given/medication-given";
@@ -7,6 +7,7 @@ import {DietPage} from "../diet/diet";
 import {MedicalHistoryPage} from "../medical-history/medical-history";
 import {TestPerformedPage} from "../test-performed/test-performed";
 import {NutritionGuidePage} from "../nutrition-guide/nutrition-guide";
+import {ApiService} from "../../providers/api-service";
 
 
 @Component({
@@ -15,34 +16,60 @@ import {NutritionGuidePage} from "../nutrition-guide/nutrition-guide";
 })
 export class PatientProfilePage {
 
-  reasonForVisit(){
-    this.navCtrl.push(ReasonForVisitPage);
+  personData=this.navParams.get('person');
+  doctors: any[];
+
+  getDoctors(){
+    return this.api.get('doctorpatient/')
+      .then ((datas) => {
+      this.doctors = datas;
+      });
   }
+
+  reasonForVisit(){
+    this.navCtrl.push(ReasonForVisitPage,{
+      personData:this.personData
+    });
+  }
+
   medicalHistory(){
-    this.navCtrl.push(MedicalHistoryPage);
+    this.navCtrl.push(MedicalHistoryPage,{
+      personData:this.personData
+    });
   }
   dietRestriction(){
-    this.navCtrl.push(DietPage);
+    this.navCtrl.push(DietPage,{
+      personData:this.personData
+    });
   }
 
   nutritionGuide(){
-    this.navCtrl.push(NutritionGuidePage);
+    this.navCtrl.push(NutritionGuidePage,{
+      personData:this.personData
+    });
   }
 
   medicationGiven(){
-    this.navCtrl.push(MedicationGivenPage)
+    this.navCtrl.push(MedicationGivenPage,{
+      personData:this.personData
+    });
   }
 
   testPerformed(){
-    this.navCtrl.push(TestPerformedPage)
+    this.navCtrl.push(TestPerformedPage,{
+      personData:this.personData
+    });
   }
   constructor(public navCtrl: NavController,
               public platform: Platform,
               public actionsheetCtrl: ActionSheetController,
-              private alertCtrl: AlertController) {}
+              private alertCtrl: AlertController,
+            private navParams: NavParams,
+           private api: ApiService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PatientProfilePage');
+    this.getDoctors();
   }
 
 addComment(){
@@ -170,4 +197,6 @@ addDietRestriction(){
       });
       actionSheet.present();
   }
+
+
 }
