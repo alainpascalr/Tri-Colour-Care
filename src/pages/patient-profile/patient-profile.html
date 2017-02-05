@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Patient details
+      Patient Details
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -14,7 +14,7 @@
       </ion-avatar>
       <h2>{{personData.firstname + " " +personData.lastname}}</h2>
       <p>Age: {{personData.age}}</p>
-      <p>Weight: {{personData.weight + "lbs"}}</p>
+      <p>Weight: {{personData.weight + "kgs"}}</p>
       <ion-badge item-right color="danger">{{personData.status}}</ion-badge>
 
     </ion-item>
@@ -39,6 +39,11 @@
       <button ion-item (click)="dietRestriction()">
         <ion-icon name="ios-pizza" item-left></ion-icon>
         Diet Restriction
+      </button>
+
+      <button ion-item (click)="foodDiary()">
+        <ion-icon name="ios-pizza" item-left></ion-icon>
+        Food Diary
       </button>
 
       <button ion-item (click)="nutritionGuide()">

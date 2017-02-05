@@ -10,6 +10,7 @@ export class NutritionGuidePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private api: ApiService) {}
+  personData=this.navParams.get('personData');
   dietGuide: any[];
 
   getDietGuide(){

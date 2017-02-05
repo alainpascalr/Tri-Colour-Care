@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {ApiService} from "../../providers/api-service";
 
 /*
   Generated class for the MedicationGiven page.
@@ -13,10 +14,21 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class MedicationGivenPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  private api: ApiService) {}
+  personData=this.navParams.get('personData');
+  medications: any[];
+
+  getMeds(){
+    return this.api.get('medication/')
+      .then ((datas) => {
+      this.medications = datas;
+      });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MedicationGivenPage');
+    this.getMeds();
   }
 
 }

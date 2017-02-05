@@ -5,21 +5,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ng-container *ngFor="let meds of medications">
+  <ion-card *ngIf="personData.id==meds.patient">
+
     <ion-item-group>
-      <ion-item-divider color="light">List of medications</ion-item-divider>
-      <ion-item>Advil</ion-item>
-      <ion-item>Tylenol</ion-item>
+      <ion-item-divider color="light">Medication</ion-item-divider>
+      <ion-item>{{meds.medication}}</ion-item>
     </ion-item-group>
+
     <ion-item-group>
       <ion-item-divider color="light">Reason</ion-item-divider>
-      <ion-item>The patient had headache</ion-item>
-      <ion-item>The patient suffered from dizziness</ion-item>
+      <ion-item text-wrap>{{meds.reason}}</ion-item>
     </ion-item-group>
+
     <ion-item-group>
       <ion-item-divider color="light">Frequency</ion-item-divider>
-      <ion-item>Twice a day</ion-item>
-      <ion-item>Once a day before lunch</ion-item>
+      <ion-item>{{meds.dose}}</ion-item>
     </ion-item-group>
+
   </ion-card>
+</ng-container>
 </ion-content>

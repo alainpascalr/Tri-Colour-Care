@@ -10,7 +10,7 @@
   <ion-card class="item-text-wrap" *ngFor="let docs of documents">
 
     <ng-container *ngFor="let doctor of doctors">
-    <ion-item text-wrap *ngIf="docs.doctor==doctor.id">
+    <ion-item text-wrap *ngIf="docs.doctor==doctor.id && docs.patient==personData.id">
       <h2><strong>Practitioner Name:</strong>{{doctor.prefix+ " "+
         doctor.firstname + " " + doctor.lastname}}</h2>
       <h2><strong>Role: </strong> {{doctor.specialty}}</h2>

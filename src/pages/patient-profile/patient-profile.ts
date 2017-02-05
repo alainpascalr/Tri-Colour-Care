@@ -7,6 +7,7 @@ import {DietPage} from "../diet/diet";
 import {MedicalHistoryPage} from "../medical-history/medical-history";
 import {TestPerformedPage} from "../test-performed/test-performed";
 import {NutritionGuidePage} from "../nutrition-guide/nutrition-guide";
+import {FoodDiaryPage} from "../food-diary/food-diary";
 import {ApiService} from "../../providers/api-service";
 
 
@@ -45,6 +46,12 @@ export class PatientProfilePage {
 
   nutritionGuide(){
     this.navCtrl.push(NutritionGuidePage,{
+      personData:this.personData
+    });
+  }
+
+  foodDiary(){
+    this.navCtrl.push(FoodDiaryPage,{
       personData:this.personData
     });
   }
