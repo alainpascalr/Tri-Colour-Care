@@ -6,7 +6,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 import {SigninPage} from "../pages/account/signin/signin";
 import {SignupPage} from "../pages/account/signup/signup";
 import {SearchPage} from "../pages/search/search";
-import {ProfilePage} from "../pages/profile/profile";
 import {NotificationPage} from "../pages/notification/notification";
 import {PatientProfilePage} from "../pages/patient-profile/patient-profile";
 import {DietPage} from "../pages/diet/diet";
@@ -16,7 +15,9 @@ import {ReasonForVisitPage} from "../pages/reason-for-visit/reason-for-visit";
 import {TestPerformedPage} from "../pages/test-performed/test-performed";
 import {NutritionGuidePage} from "../pages/nutrition-guide/nutrition-guide";
 import {ApiService} from "../providers/api-service";
-import {AuthService} from "../pages/account/auth-service";
+import {AuthService} from "../providers/auth-service";
+import {HomeService} from "../providers/home-service";
+import {FoodDiaryPage} from "../pages/food-diary/food-diary";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,6 @@ import {AuthService} from "../pages/account/auth-service";
     SigninPage,
     SignupPage,
     SearchPage,
-    ProfilePage,
     NotificationPage,
     PatientProfilePage,
     DietPage,
@@ -34,7 +34,8 @@ import {AuthService} from "../pages/account/auth-service";
     MedicationGivenPage,
     ReasonForVisitPage,
     TestPerformedPage,
-    NutritionGuidePage
+    NutritionGuidePage,
+    FoodDiaryPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -46,7 +47,6 @@ import {AuthService} from "../pages/account/auth-service";
     TabsPage,
     SigninPage,
     SignupPage,
-    ProfilePage,
     NotificationPage,
     PatientProfilePage,
     DietPage,
@@ -54,8 +54,9 @@ import {AuthService} from "../pages/account/auth-service";
     MedicationGivenPage,
     ReasonForVisitPage,
     TestPerformedPage,
-    NutritionGuidePage
+    NutritionGuidePage,
+    FoodDiaryPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ApiService, AuthService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ApiService, AuthService, HomeService]
 })
 export class AppModule {}

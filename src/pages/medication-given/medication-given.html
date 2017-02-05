@@ -5,9 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngFor="let meds of medications">
-  <ion-card *ngIf="personData.id==meds.patient">
 
+  <ion-card *ngFor="let meds of medications">
     <ion-item-group>
       <ion-item-divider color="light">Medication</ion-item-divider>
       <ion-item>{{meds.medication}}</ion-item>
@@ -22,7 +21,5 @@
       <ion-item-divider color="light">Frequency</ion-item-divider>
       <ion-item>{{meds.dose}}</ion-item>
     </ion-item-group>
-
   </ion-card>
-</ng-container>
 </ion-content>

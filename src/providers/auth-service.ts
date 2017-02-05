@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {User} from "./user.interface";
-import {ApiService} from "../../providers/api-service";
+import {User} from "../pages/account/user.interface";
+import {ApiService} from "./api-service";
 
 @Injectable()
 export class AuthService {
   constructor (private api: ApiService) {}
 
-  signin(email: string, password: string): Promise<void> {
-    return this.api.post('patient/', { email, password })
+  signin(id: string): Promise<void> {
+    return this.api.get(`patient/${id}/`)
       .then((user) => { localStorage.setItem('user', JSON.stringify(user)); })
   }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {ApiService} from "../../providers/api-service";
+import {AuthService} from "../../providers/auth-service";
 
 /*
   Generated class for the TestPerformed page.
@@ -15,17 +16,22 @@ import {ApiService} from "../../providers/api-service";
 })
 export class TestPerformedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private api: ApiService) {}
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private api: ApiService,
+              private authService: AuthService) {}
   data: any[];
   doctor;
   getTest(){
-    return this.api.get('testing/')
+    let id = this.authService.getUser().id;
+    return this.api.get(`testing/${id}`)
       .then ((datas) => {
-      this.data = datas;
+      this.data = [datas];
       });
   }
-  getDoctor(id){
-    return this.api.get('doctors/?id='+id)
+  getDoctor(){
+    let id = this.authService.getUser().id;
+    return this.api.get(`doctors/?id='${id}`)
       .then ((datas) => {
 
       return this.doctor = datas[0].prefix+datas[0].firstname+datas[0].lastname;

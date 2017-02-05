@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {PatientProfilePage} from "../patient-profile/patient-profile";
 import {ApiService} from "../../providers/api-service";
+import {AuthService} from "../../providers/auth-service";
+import {User} from "../account/user.interface";
+import {HomeService} from "../../providers/home-service";
 
 
 @Component({
@@ -15,51 +18,32 @@ export class HomePage {
   //Show patient details
   viewDetails(personData){
     this.navCtrl.push(PatientProfilePage,{
-    person:personData
+      person : personData
     });
   }
 
-  constructor(public navCtrl: NavController,  public navParams: NavParams, private api: ApiService) {}
-  patient: any[];
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private homeService: HomeService) {}
+  patient: any [];
   symptoms: any[];
   medications: any[];
   doctors: any[];
-  getPatients(){
-    return this.api.get('patient/')
-      .then ((datas) => {
-      this.patient = datas;
-      });
-  }
-
-  getSymptoms(){
-    return this.api.get('symptom/')
-      .then ((datas) => {
-      this.symptoms = datas;
-      });
-  }
-
-
-  getMeds(){
-      return this.api.get('medication/')
-        .then ((datas) => {
-        this.medications = datas;
-        });
-    }
-
-    getDocs(){
-        return this.api.get('doctor/')
-          .then ((datas) => {
-          this.doctors = datas;
-          });
-      }
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestPerformedPage');
-    this.getPatients();
-    this.getSymptoms();
-    this.getMeds();
-    this.getDocs();
+    this.homeService.getPatients().then((data) => {
+      this.patient = [data];
+    });
+    this.homeService.getSymptoms().then((data) =>{
+      this.symptoms = [data];
+    });
+    this.homeService.getMeds().then((data) =>{
+      this.medications = [data];
+    });
+    this.homeService.getDocs().then((data) =>{
+      this.doctors = [data];
+    })
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {ApiService} from "../../providers/api-service";
+import {AuthService} from "../../providers/auth-service";
 
 /*
   Generated class for the Diet page.
@@ -15,14 +16,15 @@ import {ApiService} from "../../providers/api-service";
 export class DietPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private api: ApiService) {}
+  private api: ApiService, private authService: AuthService) {}
   personData=this.navParams.get('personData');
   dietRestriction: any[];
 
   getDietRestrictions(){
-    return this.api.get('dietrestriction/')
+    let id = this.authService.getUser().id;
+    return this.api.get(`dietrestriction/${id}/`)
       .then ((datas) => {
-      this.dietRestriction = datas;
+      this.dietRestriction = [datas];
       });
   }
 

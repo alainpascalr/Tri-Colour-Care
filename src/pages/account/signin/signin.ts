@@ -4,7 +4,7 @@ import { SignupPage } from "../signup/signup";
 import {TabsPage} from "../../tabs/tabs";
 import {ApiService} from "../../../providers/api-service";
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
-import {AuthService} from "../auth-service";
+import {AuthService} from "../../../providers/auth-service";
 
 @Component({
   selector: 'page-signin',
@@ -31,7 +31,7 @@ export class SigninPage {
   onLogin() {
     const email = this.myForm.value.email;
     const password = this.myForm.value.password;
-    this._authService.signin(email, password).then(() => {
+    this._authService.signin(email).then(() => {
       this.navCtrl.push(TabsPage);
       this.navCtrl.setRoot(TabsPage);
     });

@@ -9,6 +9,7 @@ import {TestPerformedPage} from "../test-performed/test-performed";
 import {NutritionGuidePage} from "../nutrition-guide/nutrition-guide";
 import {FoodDiaryPage} from "../food-diary/food-diary";
 import {ApiService} from "../../providers/api-service";
+import {AuthService} from "../../providers/auth-service";
 
 
 @Component({
@@ -16,14 +17,21 @@ import {ApiService} from "../../providers/api-service";
   templateUrl: 'patient-profile.html'
 })
 export class PatientProfilePage {
-
+  constructor(public navCtrl: NavController,
+              public platform: Platform,
+              public actionsheetCtrl: ActionSheetController,
+              private alertCtrl: AlertController,
+              private navParams: NavParams,
+              private api: ApiService,
+              private authService: AuthService) {}
   personData=this.navParams.get('person');
   doctors: any[];
 
   getDoctors(){
-    return this.api.get('doctorpatient/')
+    let id = this.authService.getUser().id;
+    return this.api.get(`doctorpatient/${id}/`)
       .then ((datas) => {
-      this.doctors = datas;
+      this.doctors = [datas];
       });
   }
 
@@ -67,12 +75,6 @@ export class PatientProfilePage {
       personData:this.personData
     });
   }
-  constructor(public navCtrl: NavController,
-              public platform: Platform,
-              public actionsheetCtrl: ActionSheetController,
-              private alertCtrl: AlertController,
-            private navParams: NavParams,
-           private api: ApiService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PatientProfilePage');

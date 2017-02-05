@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {ApiService} from "../../providers/api-service";
+import {AuthService} from "../../providers/auth-service";
 
 /*
   Generated class for the MedicalHistory page.
@@ -15,21 +16,23 @@ import {ApiService} from "../../providers/api-service";
 export class MedicalHistoryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private api: ApiService) {}
+  private api: ApiService, private authService: AuthService) {}
   personData=this.navParams.get('personData');
   documents: any[];
   doctors: any [];
 
     getDocuments(){
-      return this.api.get('document/')
+      let id = this.authService.getUser().id;
+      return this.api.get(`document/${id}/`)
         .then ((datas) => {
-        this.documents = datas;
+        this.documents = [datas];
         });
     }
     getDoctors(){
-      return this.api.get('doctor/')
+      let id = this.authService.getUser().id;
+      return this.api.get(`doctor/${id}/`)
         .then ((datas) => {
-        this.doctors = datas;
+        this.doctors = [datas];
         });
     }
 

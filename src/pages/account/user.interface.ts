@@ -3,8 +3,8 @@
  */
 export class User {
   constructor(public id: string,
-              public firstName: string,
-              public lastName: string,
+              public firstname: string,
+              public lastname: string,
               public email: string,
               public phone: string,
               public age: string,

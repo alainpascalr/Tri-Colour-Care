@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {ApiService} from "../../providers/api-service";
+import {AuthService} from "../../providers/auth-service";
 
 /*
   Generated class for the MedicationGiven page.
@@ -15,14 +16,14 @@ import {ApiService} from "../../providers/api-service";
 export class MedicationGivenPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private api: ApiService) {}
-  personData=this.navParams.get('personData');
+  private api: ApiService, private authService: AuthService) {}
   medications: any[];
 
   getMeds(){
-    return this.api.get('medication/')
+    let id = this.authService.getUser().id;
+    return this.api.get(`medication/${id}/`)
       .then ((datas) => {
-      this.medications = datas;
+      this.medications = [datas];
       });
   }
 
